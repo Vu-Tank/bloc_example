@@ -1,0 +1,25 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:example_bloc/model/user_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+class SharedPre {
+  static Future<void> saveUser(UserModel userModel) async {
+    // SharedPreferences.setMockInitialValues({});
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('user', userModel.toJson());
+  }
+
+  static Future<UserModel?> getUser() async {
+    // SharedPreferences.setMockInitialValues({});
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final user = prefs.getString('user');
+    if (user == null) return null;
+    return UserModel.fromJson(user);
+  }
+
+  static Future<void> removeUser() async {
+    // SharedPreferences.setMockInitialValues({});
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.remove('user');
+  }
+}
