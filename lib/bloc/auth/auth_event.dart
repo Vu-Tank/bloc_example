@@ -18,8 +18,6 @@ class AuthLogout extends AuthEvent {
 }
 
 class ReAuth extends AuthEvent {
-  final UserModel userModel;
-  const ReAuth(this.userModel);
   @override
-  List<Object> get props => [userModel];
+  List<Object> get props => [];
 }
